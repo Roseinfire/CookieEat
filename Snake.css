@@ -1,0 +1,37 @@
+  * {
+       -webkit-user-select: none;
+       -moz-user-select: none;
+       -ms-user-select: none;
+       }
+
+   .classes {
+       font-size: 115%;
+       margin: 4px;
+       }
+
+   #overg {
+       position: fixed;
+       z-index: 1000;
+       display: none;
+       cursor: none;
+       }
+
+   #stoper {
+       margin-top: 15px;
+       width: 100px;
+       padding: 10px;
+       background-color: firebrick;
+       color: wheat;
+       font-size: 13px;
+       }
+
+   #sk {
+       position: fixed;
+       z-index: 100;
+       background-color: bisque;
+       padding: 20px;
+       padding-top: 30px;
+       padding-bottom: 30px;
+       }
+
+   
