@@ -7,7 +7,6 @@
      <script type="text/htmls">
       import "Snake.css"
       style fixed "position: fixed"
-      style canv "z-index: 1"
       style none "display: none"
       style antiborder "border: none"
       style border "border: solid; border-width: 1px"
@@ -18,7 +17,7 @@
             - # *p { id "T" } .classes
             - # play *button { id "stoper" } { onclick "stopGame()" } @antiborder
         #*div @form @fixed @border { id "form" }
-        #*canvas @canv @fixed { id "tcanv" }
+        #*canvas @fixed { id "tcanv" }
         #*img { id "overg" } { src "Overgame.png" } @none
         #*img { id "littlecookie" } { src "LargerCookie.png" } @none
         import chain "Scripts/constants.js"
