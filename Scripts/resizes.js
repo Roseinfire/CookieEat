@@ -19,7 +19,7 @@
        var sk = elemid("sk")
        if(e == "begin") {
            sk.style.display = "block"
-           __width__ = Math.floor((innerHeight-30)/__height__)
+           __width__ = Math.floor((innerHeight*0.99)/__height__)
            canvas.width = (__size__ + __padding__) * __width__
            canvas.height = (__size__ + __padding__) * __width__
        }
