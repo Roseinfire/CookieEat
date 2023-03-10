@@ -6,11 +6,9 @@
            }
        };
 
-   let steps = 0;
    function next() {
        if(__bot__.move) { __bot__.move() }
-       steps++
-       if(game == true) {
+       if(game && !GameOver ) {
            switch(vector = invector) {
                case "right": x += 1; break
                case "left": x -= 1; break
@@ -30,14 +28,7 @@
            for(var i = 1; i < snake.length; i++) {
                snake[i] = Array.from(copyS[i-1])
                }; strokeSnake()
-           if(__immortality__ == false) {
-               if(isItSnake(x, y, 1) == true) { gameOver() }
-               if(x > __size__) { gameOver() }
-               if(y > __size__) { gameOver() }
-               if(y <= 0) {  gameOver() }
-               if(x <= 0) {  gameOver() }
-               }
-           if(steps % __cookie_rate__ == 0) { generateCookies(__apmove__) }
+           if(!__immortality__ && ( isItSnake(x, y, 1) || outsidefield(x, y) )) { gameOver() }
            }
        };
 
@@ -46,6 +37,14 @@
        for(var i = start; i < snake.length; i++) {
            if(`${toC(snake[i][0])}*${toC(snake[i][1])}` == check) { return true } 
            }; return false
+       };
+
+   function outsidefield(a, b) {
+       if(a > __size__) { return true }
+       if(b > __size__) { return true }
+       if(b <= 0) {  return true }
+       if(a <= 0) {  return true }
+       return false
        };
 
    

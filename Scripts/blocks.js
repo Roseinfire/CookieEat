@@ -1,4 +1,3 @@
-
    class block {
        constructor(type, dir=null, position=[0, 0]) {
            let w = __width__
@@ -7,6 +6,7 @@
            this.x = position[0]
            this.y = position[1]
            this.dir = dir
+           this.sdir = dir
            this.type = type
            this.accurateFill = function(chain=function() {}) {
                if(game == true) { 
@@ -16,7 +16,7 @@
                    }; return Array.from([that.x, that.y])
                }
            this.accurateClear = function(dir=that.dir) {
-               that.dir = dir
+               that.sdir = dir
                if(game == true) { 
                    that.executeAction(function(a, b, width, height) {
                        ctx.clearRect(a, b, width, height)
@@ -35,13 +35,15 @@
                    }; return that
                }
            this.finalStroke = function() { 
-               window.__final_interval__ = setInterval(function() { that.stroke(__final_color__ ) }, __final_speed__)
+               window.__final_interval__ = setInterval(function() { 
+                   that.stroke(__final_color__ ) 
+                   }, __final_speed__)
                }
            this.executeAction = function(drawer=function() {}, chain=function(){}) {
                function action(progress) {
                    setTimeout(function() {
                        if(progress <= div) { 
-                           switch(that.dir) {
+                           switch(that.sdir) {
                                case "right":
                                drawer(that.x * w, that.y * w, w * progress/div, w); break
                                case "left": 
@@ -64,6 +66,14 @@
 
    function getBlock(pos) {  
        try { return eval(`a${toC(pos[0])}b${pos[1]}`) } catch  { return new block(null) }
+       };
+
+   function eachSquare(action) {
+       for(var i = 0; i <= __size__+1; i++) {
+           for(var e = 0; e <= __size__+1; e++) {
+               action(getBlock(Array.from([i, e])), i, e )
+               }
+           }
        };
 
    

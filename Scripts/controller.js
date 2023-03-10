@@ -1,47 +1,42 @@
-   document.onkeydown = function(e) { controlSnake(e.key, e.repeat) }
+   document.onkeydown = function(e) { controlSnake(e.key, e.repeat) };
 
    function controlSnake(key, repeat) {
        document.getElementsByTagName('button')[0].blur()
        if(key == ' ' && !repeat) { 
-            if(!GameOver) { stopGame() }
-            else if(!game) { replay() }
-       }
+           if(!GameOver) { stopGame() }
+           else if(!game) { replay() }
+           }
        if(key == 'ArrowRight') { 
            if(vector != 'left') { 
-               invector = 'right'; getBlock(snake[0][0],snake[0][1]).B = 'right'
+               invector = 'right';
                }
            }
        if(key == 'ArrowLeft') {
            if(vector != 'right') {
-               invector = 'left'; getBlock(snake[0][0],snake[0][1]).B = 'left'
+               invector = 'left';
                }
            }
        if(key == 'ArrowDown') {
            if(vector != 'up') { 
-               invector = 'down'; getBlock(snake[0][0],snake[0][1]).B = 'down'
+               invector = 'down';
                } 
            }
        if(key == 'ArrowUp') { 
            if(vector != 'down') {
-               invector = 'up'; getBlock(snake[0][0],snake[0][1]).B = 'up'
+               invector = 'up';
                } 
            }
        };
 
-   function stopGame() {
+   function stopGame(gameover) {
+       var head = getBlock(snake[0])
        let stoper = elemid('stoper')
-       if(game == true || GameOver) { 
-           stoper.innerHTML = "play"
-           game = false
-           if(window.timer) { 
-               window.clearInterval(timer); window.timer=null
-               }
+       if( ( gameover ) || (game && stoper.innerHTML == " pause ") ) {
+           stoper.innerHTML = " play "
+           game = false;
            }
-       else if(!game) { 
-           stoper.innerHTML = "pause"; game=true; next()
-           window.timer = setInterval(function() { 
-               elemid("T").innerHTML = "Time: " + ((__time__++)/10).toFixed(1)
-               }, 100)
+       else if(!game && !gameover && stoper.innerHTML == " play ") {
+           stoper.innerHTML = " pause "; game=true; next()
            }
        };
 
@@ -50,11 +45,11 @@
        if(!gameEnd.time) {
            if(!mess) {
                alert(`Congrats! That was a great game..`)
-               gameEnd(" Reload to play again!")
+               gameEnd(`Thanks for playing !!!`)
                } 
            else {
                gameEnd.time = true
-               alert(" Reload to play again!")
+               alert(mess)
                gameEnd()
                }
            }
@@ -68,8 +63,7 @@
        };
 
    function gameOver() {
-       stopGame()
-       GameOver=true
+       stopGame(GameOver=true)
        elemid("overg").style.display = "block"
        getBlock(snake[0]).finalStroke()
        };

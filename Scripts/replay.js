@@ -1,5 +1,11 @@
 function replay(begin) {
-       (window.__final_interval__ && !__save_final__) ? window.clearInterval(__final_interval__) : null
+       if(window.__final_interval__ && !__save_final__ ) { 
+           window.clearInterval(__final_interval__) 
+           }
+       else if( window.__final_interval__ && __save_final__ && !outsidefield(x, y) ) { 
+           window.clearInterval(__final_interval__) 
+        }
+       eachSquare(function(item, a, b) { item.type = null })
        ctx.clearRect(0,0,canvas.width, canvas.height)
        elemid("T").innerHTML = (`Time: ${__time__ = 0}`)
        elemid("S").innerHTML = (`Score: ${__score__ = 0}`)

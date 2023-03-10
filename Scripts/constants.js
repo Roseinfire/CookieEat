@@ -4,19 +4,18 @@
    const __immortality__ = false
    const __size__ = 8
    const __padding__ = 2
-   const __speed__ = 8
-   const __div__ = 16
+   const __speed__ = Math.ceil(innerHeight/64)
+   const __div__ = Math.ceil(180 / __speed__)
    const __def_x__ = 4
    const __def_y__ = 2
    const __def_vect__ = "right"
    const __def_invect__ = "right"
    const __def_score__ = 0
    const __def_time__ = 0
-   const __cookie_rate__ = NaN
    const __apmove__ = 1
-   const __final_speed__ = 250
+   const __final_speed__ = __div__*__speed__*1.2
    const __final_color__ = "rgba(255,161,189,1)"
-   const __save_final__ = false
+   const __save_final__ = true
    const __def_cookie__ = [__def_x__+3, __def_y__]
    const __def_snake__ = [[__def_x__, __def_y__], [__def_x__-1, __def_y__], [__def_x__-2, __def_y__]]
    
@@ -24,8 +23,15 @@
    let __height__ = __size__ + __padding__
    let __record__ = 0
    let __bot__ = { };
+
    let __overg__ = new Image()
    let __cookie__= new Image()
+   let __timer__ = setInterval(
+   function() { 
+       if(game) {
+           elemid("T").innerHTML = "Time: " + ((__time__++)/10).toFixed(1)
+           }
+       }, 100)
    
    var __score__,  __time__, x, y, vector, invector
    
